@@ -4,7 +4,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
+  output: "static",
   site: "https://lucasvidela94.github.io",
   base: "",
   i18n: {

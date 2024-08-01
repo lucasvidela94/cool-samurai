@@ -4,7 +4,8 @@
     "projects": "Proyectos",
     "experience": "Experiencia",
     "blog": "Blog",
-    "aboutMe": "Sobre Mí"
+    "aboutMe": "Sobre Mí",
+    "contact": "Contacto"
   },
   "home": {
     "title": "Bienvenido a mi Portfolio",
@@ -44,5 +45,13 @@
     "address": "Dirección",
     "socialMedia": "Redes Sociales",
     "copyright": "© 2024 [Tu Nombre]. Todos los derechos reservados."
+  },
+  "contact": {
+    "workTogether": "¡Trabajemos juntos!",
+    "nameLabel": "Nombre",
+    "lastnameLabel": "Apellido",
+    "emailLabel": "Email",
+    "telephoneLabel": "Teléfono",
+    "messageLabel": "Tu mensaje"
   }
 }

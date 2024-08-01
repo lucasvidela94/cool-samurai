@@ -51,11 +51,6 @@
         };
     };
 
-    const saveInput = () => {
-        const formData = getFormData();
-        localStorage.setItem("contactinfo", JSON.stringify(formData));
-    };
-
     const retrieveInfo = () => {
         const store = JSON.parse(localStorage.getItem("contactinfo") || "{}");
         document.getElementById("nombre").value = store.name || "";

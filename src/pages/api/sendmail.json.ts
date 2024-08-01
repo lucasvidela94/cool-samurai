@@ -4,12 +4,12 @@ import nodemailer from "nodemailer";
 const adminEmail = import.meta.env.EMAIL;
 const adminPassword = import.meta.env.PASS;
 
-console.log(adminEmail, adminPassword);
 export const prerender = false;
 
 export const POST: APIRoute = async ({ params, request }) => {
   if (request.headers.get("Content-Type") === "application/json") {
     try {
+      console.log(params);
       const formData = await request.json();
       const name = formData.name;
       const surname = formData.surname;

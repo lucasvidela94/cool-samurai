@@ -45,5 +45,13 @@
     "address": "Dirección",
     "socialMedia": "Redes Sociales",
     "copyright": "© 2024 [Tu Nombre]. Todos los derechos reservados."
+  },
+  "contact": {
+    "workTogether": "¡Trabajemos juntos!",
+    "nameLabel": "Nombre",
+    "lastnameLabel": "Apellido",
+    "emailLabel": "Email",
+    "telephoneLabel": "Teléfono",
+    "messageLabel": "Tu mensaje"
   }
 }
