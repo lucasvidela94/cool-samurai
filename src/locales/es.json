@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "blog": "Blog",
+    "aboutMe": "Sobre Mí",
+    "contact": "Contacto"
+  },
+  "home": {
+    "title": "Bienvenido a mi Portfolio",
+    "subtitle": "Desarrollador Web & Diseñador",
+    "cta": "Ver Proyectos"
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "description": "Una selección de mis mejores trabajos",
+    "viewProject": "Ver Proyecto",
+    "technologies": "Tecnologías utilizadas"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "yearsOfExperience": "Años de Experiencia",
+    "currentPosition": "Posición Actual",
+    "previousPositions": "Posiciones Anteriores"
+  },
+  "blog": {
+    "title": "Mi Blog",
+    "recentPosts": "Publicaciones Recientes",
+    "readMore": "Leer Más",
+    "categories": "Categorías"
+  },
+  "aboutMe": {
+    "title": "Sobre Mí",
+    "intro": "Hola, soy [Tu Nombre]",
+    "description": "Soy un desarrollador web apasionado por crear soluciones innovadoras...",
+    "skills": "Habilidades",
+    "education": "Educación",
+    "hobbies": "Pasatiempos"
+  },
+  "common": {
+    "contactMe": "Contáctame",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "socialMedia": "Redes Sociales",
+    "copyright": "© 2024 [Tu Nombre]. Todos los derechos reservados."
+  }
+}

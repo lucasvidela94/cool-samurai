@@ -1,0 +1,63 @@
+---
+const { title, company, period, description, skills } = Astro.props;
+---
+
+<div class="job-card">
+    <div class="job-card-header">
+        <span class="job-period">{period}</span>
+        <h3 class="job-title">
+            {title} · {company}
+            <span class="external-link">↗</span>
+        </h3>
+    </div>
+    <div class="job-card-body">
+        <p>{description}</p>
+    </div>
+    <div class="job-card-skills">
+        {skills.map((skill) => <span class="skill-tag">{skill}</span>)}
+    </div>
+</div>
+
+<style>
+    .job-card {
+        background-color: #24263b;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .job-card-header {
+        margin-bottom: 1rem;
+    }
+    .job-period {
+        color: #64748b;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    .job-title {
+        color: #e2e8f0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    .external-link {
+        color: #38bdf8;
+    }
+    .job-card-body {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    .job-card-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .skill-tag {
+        background-color: rgba(56, 189, 248, 0.1);
+        color: #38bdf8;
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+    }
+</style>

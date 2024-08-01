@@ -1,0 +1,47 @@
+---
+import BlogCard from "../cards/BlogCard.astro";
+import mockImage from "../../../public/mock-blogcard1.webp";
+import { getCollection } from "astro:content";
+const blogEntries = await getCollection("blog");
+---
+
+<section id="blog">
+    <div class="section-header">
+        <h2>Blog</h2>
+    </div>
+    <div class="section-blog">
+        {
+            blogEntries.map((entry) => (
+                <BlogCard
+                    title={entry.data.title}
+                    description={entry.data.description}
+                    imageUrl={entry.data.image}
+                    category={entry.data.category}
+                    date={entry.data.pubDate.toDateString()}
+                    slug={entry.slug}
+                />
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    #blog {
+        padding: 2rem 0;
+        margin: auto;
+    }
+
+    .section-blog {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .section-blog {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

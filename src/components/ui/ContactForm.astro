@@ -1,0 +1,152 @@
+---
+
+---
+
+<form class="contact-form" id="contactForm">
+    <h3>¡Trabajemos juntos!</h3>
+    <div class="form-row">
+        <input
+            type="text"
+            name="nombre"
+            id="nombre"
+            placeholder="Nombre"
+            required
+        />
+        <input
+            type="text"
+            name="apellido"
+            id="apellido"
+            placeholder="Apellido"
+            required
+        />
+    </div>
+    <div class="form-row">
+        <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+        />
+        <input
+            type="tel"
+            name="telefono"
+            id="telefono"
+            placeholder="Teléfono"
+        />
+    </div>
+    <textarea name="mensaje" id="mensaje" placeholder="Tu mensaje" required
+    ></textarea>
+    <button type="submit">Enviar</button>
+</form>
+
+<script is:inline>
+    const getFormData = () => {
+        return {
+            name: document.getElementById("nombre").value,
+            surname: document.getElementById("apellido").value,
+            email: document.getElementById("email").value,
+            tel: document.getElementById("telefono").value,
+            message: document.getElementById("mensaje").value,
+        };
+    };
+
+    const saveInput = () => {
+        const formData = getFormData();
+        localStorage.setItem("contactinfo", JSON.stringify(formData));
+    };
+
+    const retrieveInfo = () => {
+        const store = JSON.parse(localStorage.getItem("contactinfo") || "{}");
+        document.getElementById("nombre").value = store.name || "";
+        document.getElementById("apellido").value = store.surname || "";
+        document.getElementById("email").value = store.email || "";
+        document.getElementById("telefono").value = store.tel || "";
+    };
+
+    const sendMail = async (event) => {
+        event.preventDefault();
+        const formData = getFormData();
+
+        try {
+            const response = await fetch("/api/sendmail.json", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("Email sent:", data);
+        } catch (err) {
+            console.log("Error", err);
+        }
+    };
+
+    document.getElementById("contactForm").addEventListener("submit", sendMail);
+    retrieveInfo();
+</script>
+
+<style>
+    .contact-form {
+        background-color: #24263b;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    p {
+        color: #8d99ae;
+        margin-bottom: 1.5rem;
+    }
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    input,
+    textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 5px;
+        background-color: #1f2235;
+        color: #f8f9fa;
+    }
+    textarea {
+        height: 150px;
+        resize: vertical;
+    }
+    button {
+        background-color: rgba(56, 189, 248, 0.1);
+        color: #38bdf8;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+    button:hover {
+        background-color: rgba(56, 189, 248, 0.3);
+    }
+
+    @media (max-width: 600px) {
+        .contact-container {
+            padding: 0 1rem;
+        }
+        .form-row {
+            flex-direction: column;
+        }
+    }
+</style>

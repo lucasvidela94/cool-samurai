@@ -1,0 +1,55 @@
+---
+import ProjectCard from "../cards/ProjectCard.astro";
+
+const projects = [
+    {
+        title: "Build a Spotify Connected App",
+        description:
+            "Video course that teaches how to build a web app with the Spotify Web API. Topics covered include the principles of REST APIs, user auth flows, Node, Express, React, Styled Components, and more.",
+        imageUrl:
+            "https://brittanychiang.com/_next/image?url=%2Fimages%2Fprojects%2Fcourse-card.png&w=256&q=75",
+        projectUrl: "#",
+        tags: ["React", "Express", "Spotify API", "Heroku"],
+    },
+    {
+        title: "Spotify Profile",
+        description:
+            "Web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
+        imageUrl:
+            "https://brittanychiang.com/_next/image?url=%2Fimages%2Fprojects%2Fspotify-profile.png&w=256&q=75",
+        projectUrl: "#",
+        tags: ["React", "Express", "Spotify API", "Heroku"],
+        stars: 632,
+    },
+];
+---
+
+<section id="projects">
+    <div class="projects-header">
+        <h2>Proyectos</h2>
+    </div>
+    <div class="project-cards">
+        {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+</section>
+
+<style>
+    #projects {
+        padding: 2rem 0;
+    }
+    .projects-header {
+        margin-bottom: 2.5rem;
+    }
+    h2 {
+        color: #e2e8f0;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    .project-cards {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+</style>

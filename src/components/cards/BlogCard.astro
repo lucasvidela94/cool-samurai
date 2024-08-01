@@ -1,0 +1,109 @@
+---
+import { truncateString } from "../../utils/strings";
+const { title, description, imageUrl, category, date, slug } = Astro.props;
+---
+
+<article class="blog-card">
+    <a href={`/my-blog/${slug}`} class="blog-card-link">
+        <img src={imageUrl} alt={title} class="blog-card-image" />
+        <div class="blog-card-content">
+            <div class="blog-card-header">
+                <span class="blog-card-category" data-category={category}
+                    >{category}</span
+                >
+                <time datetime={date} class="blog-card-date">{date}</time>
+            </div>
+            <h3 class="blog-card-title">{title}</h3>
+            <p class="blog-card-description">
+                {truncateString(description, 28)}
+            </p>
+            <span class="blog-card-read-more">Leer más &rarr;</span>
+        </div>
+    </a>
+</article>
+
+<style>
+    .blog-card {
+        min-width: 200px;
+        max-width: 300px;
+        background-color: #24263b;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+    .blog-card-link {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+    }
+    .blog-card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .blog-card-content {
+        padding: 1rem;
+    }
+    .blog-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .blog-card-category {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+    }
+    .blog-card-date {
+        font-size: 0.875rem;
+        color: whitesmoke;
+    }
+    .blog-card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin: 0 0 0.5rem;
+        color: #1f2937;
+    }
+    .blog-card-description {
+        font-size: 1rem;
+        color: whitesmoke;
+        margin-bottom: 1rem;
+    }
+    .blog-card-read-more {
+        color: whitesmoke;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    [data-category="frontend"] {
+        background-color: #e6f3ff;
+        color: #24263b;
+    }
+    [data-category="backend"] {
+        background-color: #fff0e6;
+        color: #24263b;
+    }
+    [data-category="devops"] {
+        background-color: #ffe6e6;
+        color: #24263b;
+    }
+
+    .dark .blog-card {
+        background-color: #1f2937; /* Gray-800 */
+    }
+    .dark .blog-card-title {
+        color: #f9fafb; /* Gray-100 */
+    }
+    .dark .blog-card-description {
+        color: #d1d5db; /* Gray-300 */
+    }
+</style>

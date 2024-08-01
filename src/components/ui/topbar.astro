@@ -1,0 +1,69 @@
+---
+function translateRouteName(pathname: string) {
+    switch (pathname) {
+        case "/":
+            return "Inicio";
+        case "/contact":
+            return "Contacto";
+        case "/my-blog":
+            return "Mi Blog";
+        case "/resume":
+            return "Curriculum Vitae";
+        case "/side-proyects":
+            return "Proyectos Personales";
+        default:
+            const match = pathname.match(/\/my-blog\/(\d+)-/);
+            if (match) {
+                return `Blog Post #${match[1]}`;
+            }
+            return pathname;
+    }
+}
+
+const currentPathname = Astro.url.pathname;
+
+const translatedRouteName = translateRouteName(currentPathname);
+---
+
+<div id="topbar">
+    <div class="left">
+        <select class="language-selector">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+    <div class="right">
+        <span class="current-path">« {translatedRouteName}</span>
+    </div>
+</div>
+
+<style>
+    #topbar {
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+        padding: 1.9rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #51f2cb;
+    }
+
+    .current-path {
+        margin-right: 1rem;
+        color: #4cd7d0;
+    }
+
+    .left,
+    .right {
+        display: flex;
+        align-items: center;
+    }
+
+    .language-selector {
+        background-color: #333333;
+        color: #ffffff;
+        border: none;
+        font-size: 1rem;
+        padding: 0.3rem 0.5rem;
+        border-radius: 4px;
+    }
+</style>
