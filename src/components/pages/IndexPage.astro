@@ -1,0 +1,80 @@
+<main class="hero">
+    <div class="hero-content">
+        <div class="hero-image">
+            <img
+                src="/images/lucas_videla_avatar.jpeg"
+                alt="Lucas Videla"
+                class="profile-image"
+            />
+        </div>
+        <div class="hero-text">
+            <h1 class="hero-name">
+                Lucas<br />Videla
+            </h1>
+            <p class="hero-description">
+                Developer from Argentina, I code to solve problems and create
+                efficient solutions.
+            </p>
+        </div>
+    </div>
+</main>
+
+<style>
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        padding: 2.4rem;
+    }
+
+    .hero-content {
+        display: flex;
+        align-items: center;
+        max-width: 1200px;
+        padding: 0 2rem;
+        gap: 2rem;
+    }
+
+    .hero-image {
+        flex: 1;
+    }
+
+    .profile-image {
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .hero-text {
+        flex: 1;
+    }
+
+    .hero-name {
+        font-size: 4.5rem;
+        font-weight: bold;
+        line-height: 1;
+        margin-bottom: 1rem;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        max-width: 400px;
+    }
+
+    @media (max-width: 768px) {
+        .hero-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-name {
+            font-size: 3rem;
+        }
+
+        .hero-description {
+            margin: 0 auto;
+        }
+    }
+</style>
