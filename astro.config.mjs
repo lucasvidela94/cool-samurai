@@ -7,10 +7,6 @@ export default defineConfig({
   output: "static",
   site: "https://lucasvidela94.github.io",
   base: "",
-  i18n: {
-    defaultLocale: "en",
-    locales: ["es", "en", "pt-br"],
-  },
   content: {
     sources: ["src/content"],
   },
