@@ -4,7 +4,7 @@ import { clientFactoryFunction } from "../../utils/clientFactoryFunction";
 
 const config = clientFactoryFunction();
 const resend = new Resend(config.resendApiKey);
-
+console.log(config);
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
@@ -22,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
       `;
 
       const { data, error } = await resend.emails.send({
-        from: "Acme <onboarding@resend.dev>",
+        from: "Contacto <onboarding@resend.dev>",
         to: import.meta.env.EMAIL,
         subject: "Solicitud de contacto",
         html: htmlContent,

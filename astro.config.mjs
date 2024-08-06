@@ -6,11 +6,14 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  site: "https://lucasvidela.dev.ar/",
+  site: "https://lucasvidela.dev.ar",
+  trailingSlash: "never",
   base: "",
   content: {
     sources: ["src/content"],
   },
   integrations: [mdx()],
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "cloudflare",
+  }),
 });
