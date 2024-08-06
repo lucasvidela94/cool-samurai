@@ -1,49 +1,39 @@
 import type { APIRoute } from "astro";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-const adminEmail = import.meta.env.EMAIL;
-const adminPassword = import.meta.env.PASS;
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ params, request }) => {
+export const POST: APIRoute = async ({ request }) => {
   if (request.headers.get("Content-Type") === "application/json") {
     try {
-      console.log(params);
       const formData = await request.json();
-      const name = formData.name;
-      const surname = formData.surname;
-      const email = formData.email;
-      const tel = formData.tel;
-      const message = `${formData.message}
-----------------------------------------------------------------------
-From: ${name} ${surname} • email: ${email} • tel: ${tel}
+      const { name, surname, email, tel, message } = formData;
+
+      const htmlContent = `
+        <div style="margin: 20px auto;font-family: Helvetica, Verdana, sans-serif">
+          <p>${message}</p>
+          <hr>
+          <p>From: ${name} ${surname} • email: ${email} • tel: ${tel}</p>
+        </div>
       `;
 
-      const html = `<div style="margin: 20px auto;font-family: Helvetica, Verdana, sans-serif">${message.replace(
-        /[\r\n]/g,
-        "<br>",
-      )}</div>`;
-
-      let transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: adminEmail,
-          pass: adminPassword,
-        },
+      const { data, error } = await resend.emails.send({
+        from: "Acme <onboarding@resend.dev>",
+        to: import.meta.env.EMAIL,
+        subject: "Solicitud de contacto",
+        html: htmlContent,
       });
 
-      let mailDetails = {
-        from: email,
-        to: adminEmail,
-        subject: `Solicitud de contacto:`,
-        text: message,
-        html,
-      };
+      if (error) {
+        console.error("Error sending email:", error);
+        return new Response(JSON.stringify({ error: "Error sending email" }), {
+          status: 500,
+        });
+      }
 
-      let mailResult = await transporter.sendMail(mailDetails);
-      console.log("Message sent: %s", mailResult.messageId);
-
+      console.log("Email sent successfully:", data);
       return new Response(
         JSON.stringify({ message: "Email sent successfully" }),
         {
@@ -51,12 +41,16 @@ From: ${name} ${surname} • email: ${email} • tel: ${tel}
         },
       );
     } catch (error) {
-      console.log("******* Error: ", error);
-      return new Response(JSON.stringify({ error: "Error sending email" }), {
-        status: 500,
-      });
+      console.error("Error processing request:", error);
+      return new Response(
+        JSON.stringify({ error: "Error processing request" }),
+        {
+          status: 500,
+        },
+      );
     }
   }
+
   return new Response(JSON.stringify({ error: "Invalid Content-Type" }), {
     status: 400,
   });
