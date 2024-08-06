@@ -1,7 +1,9 @@
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
+import { clientFactoryFunction } from "../../utils/clientFactoryFunction";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const config = clientFactoryFunction();
+const resend = new Resend(config.resendApiKey);
 
 export const prerender = false;
 
